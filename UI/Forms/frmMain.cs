@@ -50,5 +50,18 @@ namespace UI.Forms
             SettingGridView(contstList);
             this.Cursor = Cursors.Default;
         }
+
+        private void deleteContact_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            ResultDto result = contactService.DeleteContact(id);
+            if (result.IsSuccess)
+            {
+                frmMain_Load(null, null);
+                MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

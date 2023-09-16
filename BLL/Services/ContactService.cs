@@ -1,11 +1,7 @@
 ﻿using BLL.Dto;
 using DAL.DataBase;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -18,7 +14,7 @@ namespace BLL.Services
             var contacts = context.Contacts.Select(c => new ContactListDto
             {
                 Id = c.Id,
-                FullName =  $"{c.Name} {c.LastName}",
+                FullName = $"{c.Name} {c.LastName}",
                 PhoneNumber = c.PhoneNumber,
             }).ToList();
             return contacts;
@@ -30,7 +26,7 @@ namespace BLL.Services
 
             if (!string.IsNullOrEmpty(searchKey))
             {
-                contactQuery = contactQuery.Where(c => 
+                contactQuery = contactQuery.Where(c =>
                       c.Name.Contains(searchKey)
                    || c.LastName.Contains(searchKey)
                    || c.PhoneNumber.Contains(searchKey)
@@ -46,6 +42,26 @@ namespace BLL.Services
             }).ToList();
 
             return data;
+        }
+
+        public ResultDto DeleteContact(int id)
+        {
+            var contact = context.Contacts.Find(id);
+            if (contact != null)
+            {
+                context.Contacts.Remove(contact);
+                context.SaveChanges();
+                return new ResultDto 
+                {
+                    IsSuccess = true,
+                    message = "مخاطب با موفقیت حذف شد."
+                };
+            }
+            return new ResultDto
+            {
+                IsSuccess = false,
+                message = "مخاطب یافت نشد."
+            };
         }
     }
 }
