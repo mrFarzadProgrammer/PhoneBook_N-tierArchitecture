@@ -1,4 +1,5 @@
-﻿using BLL.Services;
+﻿using BLL.Dto;
+using BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,13 @@ namespace UI.Forms
             this.Cursor = Cursors.WaitCursor;
 
             var contactList = contactService.GetContactLists();
+            SettingGridView(contactList);
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void SettingGridView(List<ContactListDto> contactList)
+        {
             dataGridView1.DataSource = contactList;
             dataGridView1.Columns[0].HeaderText = "شناسه";
             dataGridView1.Columns[1].HeaderText = "نام";
@@ -33,8 +41,13 @@ namespace UI.Forms
 
             dataGridView1.Columns[1].Width = 200;
             dataGridView1.Columns[2].Width = 200;
+        }
 
-
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            var contstList = contactService.SearchContact(txtSearchKey.Text);
+            SettingGridView(contstList);
             this.Cursor = Cursors.Default;
         }
     }

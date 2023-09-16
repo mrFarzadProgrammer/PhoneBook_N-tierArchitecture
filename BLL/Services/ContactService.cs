@@ -23,5 +23,29 @@ namespace BLL.Services
             }).ToList();
             return contacts;
         }
+
+        public List<ContactListDto> SearchContact(string searchKey)
+        {
+            var contactQuery = context.Contacts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchKey))
+            {
+                contactQuery = contactQuery.Where(c => 
+                      c.Name.Contains(searchKey)
+                   || c.LastName.Contains(searchKey)
+                   || c.PhoneNumber.Contains(searchKey)
+                   || c.Company.Contains(searchKey)
+                );
+            }
+
+            var data = contactQuery.Select(c => new ContactListDto
+            {
+                Id = c.Id,
+                FullName = $"{c.Name} {c.LastName}",
+                PhoneNumber = c.PhoneNumber
+            }).ToList();
+
+            return data;
+        }
     }
 }
