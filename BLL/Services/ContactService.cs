@@ -1,5 +1,7 @@
 ﻿using BLL.Dto;
 using DAL.DataBase;
+using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -95,6 +97,25 @@ namespace BLL.Services
                 Data = data
             };
 
+        }
+
+        public ResultDto AddNewContact(AddNewContactDto newContact)
+        {
+            Contact contact = new Contact()
+            {
+                Name = newContact.Name,
+                LastName = newContact.LastName,
+                PhoneNumber = newContact.PhoneNumber,
+                Address = newContact.Address,
+                Company=newContact.Company,
+                CreateAt=DateTime.Now,
+                Description = newContact.Description
+            };
+
+            context.Contacts.Add(contact);
+            context.SaveChanges();
+
+            return new ResultDto { IsSuccess = true, message = $"مخاطب {contact.Name} {contact.LastName} با موفقیت در دیتابیس ذخیره شد." };
         }
     }
 }

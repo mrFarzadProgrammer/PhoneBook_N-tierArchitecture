@@ -80,5 +80,12 @@ namespace UI.Forms
         {
             ShowDetail();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmAddContact addContact = new frmAddContact();
+            addContact.ShowDialog();
+            frmMain_Load(null, null);
+        }
     }
 }

@@ -34,6 +34,7 @@
             label1 = new System.Windows.Forms.Label();
             deleteContact = new System.Windows.Forms.Button();
             btnDetail = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -94,11 +95,22 @@
             btnDetail.UseVisualStyleBackColor = true;
             btnDetail.Click += button1_Click;
             // 
+            // button1
+            // 
+            button1.Location = new System.Drawing.Point(12, 19);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(244, 23);
+            button1.TabIndex = 6;
+            button1.Text = "ثبت مخاطب";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(541, 540);
+            Controls.Add(button1);
             Controls.Add(btnDetail);
             Controls.Add(deleteContact);
             Controls.Add(label1);
@@ -127,5 +139,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button deleteContact;
         private System.Windows.Forms.Button btnDetail;
+        private System.Windows.Forms.Button button1;
     }
 }
