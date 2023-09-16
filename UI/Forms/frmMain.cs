@@ -57,11 +57,28 @@ namespace UI.Forms
             ResultDto result = contactService.DeleteContact(id);
             if (result.IsSuccess)
             {
-                frmMain_Load(null, null);
                 MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frmMain_Load(null, null);
             }
             else
                 MessageBox.Show(result.message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ShowDetail();
+        }
+
+        private void ShowDetail()
+        {
+            var id = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+            frmDetailContact frmDetail = new frmDetailContact(id);
+            frmDetail.ShowDialog();
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            ShowDetail();
         }
     }
 }

@@ -63,5 +63,38 @@ namespace BLL.Services
                 message = "مخاطب یافت نشد."
             };
         }
+
+        public ResultDto<ContactDetailDto> GetContactDetial(int id)
+        {
+            var contact = context.Contacts.Find(id);
+            if (contact == null)
+            {
+                return new ResultDto<ContactDetailDto>
+                {
+                    IsSuccess = false,
+                    Message = "مخاطب یافت نشد."
+                };
+
+            }
+
+            var data = new ContactDetailDto
+            {
+                Id = contact.Id,
+                Name = contact.Name,
+                LastName = contact.LastName,
+                Company = contact.Company,
+                PhoneNumber = contact.PhoneNumber,
+                Address = contact.Address,
+                CreateAt = contact.CreateAt,
+                Description = contact.Description 
+            };
+
+            return new ResultDto<ContactDetailDto>
+            {
+                IsSuccess = true,
+                Data = data
+            };
+
+        }
     }
 }

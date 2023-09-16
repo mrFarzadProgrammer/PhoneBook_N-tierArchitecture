@@ -33,6 +33,7 @@
             btnSearch = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             deleteContact = new System.Windows.Forms.Button();
+            btnDetail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new System.Drawing.Size(541, 389);
             dataGridView1.TabIndex = 0;
+            dataGridView1.DoubleClick += dataGridView1_DoubleClick;
             // 
             // txtSearchKey
             // 
@@ -82,11 +84,22 @@
             deleteContact.UseVisualStyleBackColor = true;
             deleteContact.Click += deleteContact_Click;
             // 
+            // btnDetail
+            // 
+            btnDetail.Location = new System.Drawing.Point(12, 55);
+            btnDetail.Name = "btnDetail";
+            btnDetail.Size = new System.Drawing.Size(244, 23);
+            btnDetail.TabIndex = 5;
+            btnDetail.Text = "نمایش جزئیات";
+            btnDetail.UseVisualStyleBackColor = true;
+            btnDetail.Click += button1_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(541, 540);
+            Controls.Add(btnDetail);
             Controls.Add(deleteContact);
             Controls.Add(label1);
             Controls.Add(btnSearch);
@@ -113,5 +126,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button deleteContact;
+        private System.Windows.Forms.Button btnDetail;
     }
 }
